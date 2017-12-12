@@ -8,5 +8,3 @@
       - redis
    redis:
      image: arm32v7/redis
-     ports:
-      - "6379:6379"
