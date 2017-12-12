@@ -7,4 +7,5 @@
      depends_on:
       - redis
    redis:
-     image: arm32v7/redis
+    #  image: arm32v7/redis
+    build: ./redis
