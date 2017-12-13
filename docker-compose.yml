@@ -1,10 +1,15 @@
- version: '2'
- services:
-   web:
-     build: ./web
-     ports:
-      - "80:5000"
-     depends_on:
-      - redis
-   redis:
+version: '2'
+services:
+  web:
+    build: ./web
+    ports:
+    - "80:5000"
+    depends_on:
+    - redis
+  redis:
     build: ./redis
+  wpe:
+    build: ./wpe
+    depends_on:
+    - web
+    privileged: true
