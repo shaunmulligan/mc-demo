@@ -3,7 +3,8 @@
 udevd &
 udevadm trigger
 
-# until ping -c1 web ; do :; done
-echo "loading $WPE_URL"
+until ping -c1 web ; do :; done
 
+echo "loading $WPE_URL"
+sleep 3s
 WPE_BCMRPI_TOUCH=1 WPELauncher $WPE_URL
