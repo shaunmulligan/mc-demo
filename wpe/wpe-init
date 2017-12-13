@@ -3,6 +3,6 @@
 udevd &
 udevadm trigger
 
-fbcp &
+until ping -c1 web:5000 &>/dev/null; do :; done
 
 WPE_BCMRPI_TOUCH=1 WPELauncher $WPE_URL
