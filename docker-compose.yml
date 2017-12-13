@@ -12,4 +12,5 @@ services:
     build: ./wpe
     depends_on:
     - web
+    - redis
     privileged: true
