@@ -3,14 +3,16 @@ services:
   web:
     build: ./web
     ports:
-    - "80:5000"
+      - "80:5000"
     depends_on:
-    - redis
+      - redis
   redis:
     build: ./redis
   wpe:
     build: ./wpe
     depends_on:
-    - web
-    - redis
+      - web
+      - redis
     privileged: true
+    environment:
+      - WPE_URL: http://web:5000/
