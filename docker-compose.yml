@@ -15,4 +15,4 @@ services:
       - redis
     privileged: true
     environment:
-      - WPE_URL: http://web:5000/
+      WPE_URL: http://web:5000/
