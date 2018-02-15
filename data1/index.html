@@ -52,10 +52,12 @@
         }]
     });
 
-    var socket = io('http://data1.' + window.location.hostname);
+    var socket = io('http://' + window.location.hostname, {
+        path: '/socket'
+    });
     socket.on('randData', function(data) {
       var series = chart.series[0];
-      series.addPoint([data.x, data.y], true, series.data.length > 300);
+      series.addPoint([data.x, data.y], true, series.data.length > 100);
     });
   });
   </script>
