@@ -14,7 +14,7 @@
   "author": "Kostas Lekkas <kostas@resin.io>",
   "license": "Apache-2.0",
   "dependencies": {
-    "express": "^4.13.4",
-    "socket.io": "^1.4.5"
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
   }
 }
