@@ -53,7 +53,7 @@
     });
 
     var socket = io('http://' + window.location.hostname, {
-        path: '/socket'
+        path: '/socket/'
     });
     socket.on('randData', function(data) {
       var series = chart.series[0];
