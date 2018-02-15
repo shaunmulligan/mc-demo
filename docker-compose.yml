@@ -1,9 +1,9 @@
 version: '2'
 services:
-  web:
-    build: ./web
+  websocket:
+    build: ./websocket
     ports:
-      - "80:5000"
+      - "80:80"
     depends_on:
       - redis
   redis:
@@ -11,8 +11,8 @@ services:
   wpe:
     build: ./wpe
     depends_on:
-      - web
+      - websocket
       - redis
     privileged: true
     environment:
-      WPE_URL: http://web:5000/
+      WPE_URL: http://websocket:80/
