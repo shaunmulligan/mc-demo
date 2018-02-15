@@ -24,12 +24,12 @@ function randomEmit (socket, x) {
 var app = express();
 var server = http.createServer(app);
 
-app.use(express.static(__dirname + '/'))
+app.use(express.static(__dirname + '/static'))
 server.listen(PORT, function() {
 	console.log("server is listening on port", PORT);
 });
 
-io = io.listen(server);
+io = io.listen(app);
 
 io.on('connection', function(socket) {
 	randomEmit(socket, 0);
