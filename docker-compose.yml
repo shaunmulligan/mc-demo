@@ -1,21 +1,25 @@
 version: '2'
 services:
+  frontend:
+    build: ./frontend
+    expose:
+      - "80"
   proxy:
     build: ./haproxy
     ports:
       - "80:80"
   data1:
     build: ./data1
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
   data2:
     build: ./data2
-    ports:
-      - "8081:8081"
+    expose:
+      - "8081"
   # wpe:
   #   build: ./wpe
   #   depends_on:
   #     - websocket
   #   privileged: true
   #   environment:
-  #     WPE_URL: http://haproxy:8080/
+  #     WPE_URL: http://data1.haproxy/
