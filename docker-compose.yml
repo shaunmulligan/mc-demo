@@ -4,15 +4,10 @@ services:
     build: ./websocket
     ports:
       - "80:80"
-    depends_on:
-      - redis
-  redis:
-    build: ./redis
   wpe:
     build: ./wpe
     depends_on:
       - websocket
-      - redis
     privileged: true
     environment:
       WPE_URL: http://websocket:80/
