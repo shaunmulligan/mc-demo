@@ -12,14 +12,10 @@ services:
     build: ./data1
     expose:
       - "8080"
-  data2:
-    build: ./data2
-    expose:
-      - "8081"
-  # wpe:
-  #   build: ./wpe
-  #   depends_on:
-  #     - websocket
-  #   privileged: true
-  #   environment:
-  #     WPE_URL: http://data1.haproxy/
+  wpe:
+    build: ./wpe
+    depends_on:
+      - proxy
+    privileged: true
+    environment:
+      WPE_URL: http://data1.haproxy/
