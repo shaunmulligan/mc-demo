@@ -3,7 +3,7 @@
 udevd &
 udevadm trigger
 
-until ping -c1 data1.haproxy ; do :; done
+until ping -c1 proxy ; do :; done
 
 echo "loading $WPE_URL"
 sleep 3s
