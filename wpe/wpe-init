@@ -3,7 +3,7 @@
 udevd &
 udevadm trigger
 
-until ping -c1 web ; do :; done
+until ping -c1 websocket ; do :; done
 
 echo "loading $WPE_URL"
 sleep 3s
