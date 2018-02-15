@@ -3,7 +3,11 @@ services:
   websocket:
     build: ./websocket
     ports:
-      - "80:80"
+      - "8080:8080"
+  data2:
+    build: ./data2
+    ports:
+      - "8081:8081"
   wpe:
     build: ./wpe
     depends_on:

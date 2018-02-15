@@ -2,7 +2,7 @@ var http = require('http');
 var io = require('socket.io');
 var express = require('express');
 
-var PORT = 8080;
+var PORT = 8081;
 
 function random (low, high) {
 	return Math.random() * (high - low) + low;
