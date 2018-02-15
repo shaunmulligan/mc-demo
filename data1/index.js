@@ -1,5 +1,8 @@
-var http = require('http');
+var app = require('http').createServer(handler)
+var io = require('socket.io')(app);
 var fs = require('fs');
+
+app.listen(8080);
 
 function random (low, high) {
 	return Math.random() * (high - low) + low;
@@ -18,21 +21,10 @@ function randomEmit (socket, x) {
   }, 1000);
 }
 
-// Loading the index file . html displayed to the client
-var server = http.createServer(function(req, res) {
-    fs.readFile('./index.html', 'utf-8', function(error, content) {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(content);
-    });
-});
 
-// Loading socket.io
-var io = require('socket.io').listen(server);
 
 // When a client connects, we note it in the console
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
     console.log('A client is connected!');
     randomEmit(socket, 0);
 });
-
-server.listen(8080);
