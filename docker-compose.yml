@@ -18,4 +18,4 @@ services:
       - proxy
     privileged: true
     environment:
-      WPE_URL: http://data1.haproxy/
+      WPE_URL: http://haproxy/

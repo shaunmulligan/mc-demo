@@ -24,7 +24,7 @@ function randomEmit (socket, x) {
 var app = express();
 var server = http.createServer(app);
 
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(__dirname + '/'))
 server.listen(PORT, function() {
 	console.log("server is listening on port", PORT);
 });
