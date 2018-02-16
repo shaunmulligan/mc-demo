@@ -18,10 +18,10 @@
             renderTo: 'container'
         },
         title: {
-            text: 'Random Data Feed'
+            text: 'CPU Temperature Feed'
         },
         subtitle: {
-            text: 'Plotting data in real-time using websockets.'
+            text: 'Plotting CPU Temperature in real-time using websockets.'
         },
         xAxis: {
             gridLineWidth: 1,
@@ -48,15 +48,15 @@
             }
         },
         series: [{
-            data: [[0,0]]
+            data: [[0]]
         }]
     });
 
     var socket = io.connect( window.location.protocol + '//' + window.location.hostname);
 
-    socket.on('randData', function(data) {
+    socket.on('temperature', function(data) {
       var series = chart.series[0];
-      series.addPoint([data.x, data.y], true, series.data.length > 100);
+      series.addPoint([data.t], true, series.data.length > 100);
     });
   });
   </script>

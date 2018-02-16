@@ -2,34 +2,32 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+const {
+  exec
+} = require('child_process');
 
 server.listen(8080);
 
 
-function random(low, high) {
+let getCpuTemp = function(socket) {
   'use strict';
-  return Math.random() * (high - low) + low;
-}
-
-function randomEmit(socket, x) {
-  'use strict';
-  var y = Math.floor(random(100, 1500));
-
-  setTimeout(function() {
-    x += Math.floor(y / 100);
-    if (socket.conn && socket.conn.readyState === 'open') {
-      let data = {
-        x: x,
-        y: y
-      };
-      socket.emit('randData', data);
-      randomEmit(socket, x);
-    }
-  }, 1000);
-}
+  exec('cat /sys/class/thermal/thermal_zone*/temp', (err, stdout) => {
+    if (err) throw err;
+    let data = {
+      t: parseFloat(stdout) / 1000
+    };
+    socket.emit('temperature', data);
+  });
+};
 
 io.on('connection', function(socket) {
   'use strict';
   console.log('a user connected');
-  randomEmit(socket, 0);
+  let dataLoop = setInterval(function() {
+    getCpuTemp(socket);
+  }, 1000);
+	socket.on('disconnect', function() {
+      console.log('a user disconnected');
+			clearInterval(dataLoop);
+   });
 });
