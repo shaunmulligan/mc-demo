@@ -52,7 +52,7 @@
         }]
     });
 
-    var socket = io.connect('https://' + window.location.hostname);
+    var socket = io.connect( window.location.protocol + '//' + window.location.hostname);
 
     socket.on('randData', function(data) {
       var series = chart.series[0];
