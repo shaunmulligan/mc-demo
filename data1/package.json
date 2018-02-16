@@ -13,6 +13,10 @@
   },
   "author": "Kostas Lekkas <kostas@resin.io>",
   "license": "Apache-2.0",
+  "jshintConfig": {
+    "esversion": 6,
+    "strict": true
+  },
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^1.7.4"

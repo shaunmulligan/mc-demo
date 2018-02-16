@@ -1,30 +1,35 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-function random (low, high) {
-	return Math.random() * (high - low) + low;
+server.listen(8080);
+
+
+function random(low, high) {
+  'use strict';
+  return Math.random() * (high - low) + low;
 }
 
-function randomEmit (socket, x) {
-  var y = randDelay = Math.floor(random(100, 1500));
+function randomEmit(socket, x) {
+  'use strict';
+  var y = Math.floor(random(100, 1500));
 
   setTimeout(function() {
     x += Math.floor(y / 100);
     if (socket.conn && socket.conn.readyState === 'open') {
-      data = { x: x, y: y };
+      let data = {
+        x: x,
+        y: y
+      };
       socket.emit('randData', data);
-      randomEmit(socket, x)
+      randomEmit(socket, x);
     }
   }, 1000);
 }
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
+  'use strict';
   console.log('a user connected');
   randomEmit(socket, 0);
 });
-
-http.listen(8080, function(){
-  console.log('listening on *:8080');
-});
-
